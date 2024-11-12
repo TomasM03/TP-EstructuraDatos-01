@@ -31,11 +31,11 @@ public class SceneMovement : MonoBehaviour
     }
     private void Excersise3()
     {
-        SceneManager.LoadScene("3.ABB");
+        SceneManager.LoadScene("3. Conjunto TDA");
     }
     private void Excersise4()
     {
-        SceneManager.LoadScene("4.ABB");
+        SceneManager.LoadScene("4. Graph");
     }
     private void Excersise5()
     {
