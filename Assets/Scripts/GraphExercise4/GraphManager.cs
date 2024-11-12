@@ -6,11 +6,11 @@ using UnityEngine;
 public class GraphManager : MonoBehaviour
 {
     public Graph<VisualNode> graph;
-    [SerializeField] private GameObject[] vertexPrefabs;
+    [SerializeField] private GameObject[] verticesPrefab;
     [SerializeField] private GameObject traveler;
     [SerializeField] private TextMeshProUGUI travelCost;
     private VisualNode currentDestination;
-    private Stack<VisualNode> pathToDestination = new Stack<VisualNode>();
+    private Stack<VisualNode> travelToDestination = new Stack<VisualNode>();
     private int totalTravelCost;
 
     private void Awake()
@@ -18,22 +18,21 @@ public class GraphManager : MonoBehaviour
         Debug.Log(traveler);
         graph = new Graph<VisualNode>();
 
-        for (int i = 0; i < vertexPrefabs.Length; i++)
+        for (int i = 0; i < verticesPrefab.Length; i++)
         {
-            vertexPrefabs[i].GetComponentInChildren<TextMeshProUGUI>().text = (i + 1).ToString();
+            verticesPrefab[i].GetComponentInChildren<TextMeshProUGUI>().text = (i + 1).ToString();
             VisualNode visualNode = new VisualNode(i + 1);
-            graph.AddNode(visualNode);
+            graph.AddNodes(visualNode);
         }
         NodeConnections();
         currentDestination = graph.nodeList[0];
-        traveler.transform.position = new Vector2(vertexPrefabs[0].transform.position.x, vertexPrefabs[0].transform.position.y);
+        traveler.transform.position = new Vector2(verticesPrefab[0].transform.position.x, verticesPrefab[0].transform.position.y);
     }
-
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit2D hit = IdentifyNode();
+            RaycastHit2D hit = NodeIdentifier();
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Node"))
                 TravelToDestination(hit);
         }
@@ -41,18 +40,18 @@ public class GraphManager : MonoBehaviour
 
     private void NodeConnections()
     {
-        graph.AddConnection(graph.nodeList[0], graph.nodeList[1], 5);
-        graph.AddConnection(graph.nodeList[0], graph.nodeList[2], 6);
-        graph.AddConnection(graph.nodeList[1], graph.nodeList[3], 8);
-        graph.AddConnection(graph.nodeList[3], graph.nodeList[2], 3);
-        graph.AddConnection(graph.nodeList[3], graph.nodeList[5], 7);
-        graph.AddConnection(graph.nodeList[2], graph.nodeList[5], 5);
-        graph.AddConnection(graph.nodeList[2], graph.nodeList[4], 6);
-        graph.AddConnection(graph.nodeList[5], graph.nodeList[6], 8);
-        graph.AddConnection(graph.nodeList[4], graph.nodeList[6], 3);
+        graph.AddConnections(graph.nodeList[0], graph.nodeList[1], 5);
+        graph.AddConnections(graph.nodeList[0], graph.nodeList[2], 6);
+        graph.AddConnections(graph.nodeList[1], graph.nodeList[3], 8);
+        graph.AddConnections(graph.nodeList[3], graph.nodeList[2], 3);
+        graph.AddConnections(graph.nodeList[3], graph.nodeList[5], 7);
+        graph.AddConnections(graph.nodeList[2], graph.nodeList[5], 5);
+        graph.AddConnections(graph.nodeList[2], graph.nodeList[4], 6);
+        graph.AddConnections(graph.nodeList[5], graph.nodeList[6], 8);
+        graph.AddConnections(graph.nodeList[4], graph.nodeList[6], 3);
     }
 
-    private RaycastHit2D IdentifyNode()
+    private RaycastHit2D NodeIdentifier()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
@@ -60,54 +59,52 @@ public class GraphManager : MonoBehaviour
         return hit;
     }
 
-    private void TravelToDestination(RaycastHit2D hit)
+    private void TravelToDestination(RaycastHit2D ray)
     {
-        GameObject node = hit.collider.gameObject;
+        GameObject node = ray.collider.gameObject;
         int nodeIndex = int.Parse(node.GetComponentInChildren<TextMeshProUGUI>().text);
         VisualNode visualNode = new VisualNode(nodeIndex);
-        visualNode = graph.GetNode(visualNode);
+        visualNode = graph.ReturnNodes(visualNode);
         totalTravelCost = 0;
-        pathToDestination.Push(graph.nodeList[nodeIndex - 1]);
+        travelToDestination.Push(graph.nodeList[nodeIndex - 1]);
         CreatePath(currentDestination, graph.nodeList[nodeIndex - 1]);
-        if (pathToDestination.Count > 0)
+        if (travelToDestination.Count > 0)
         {
             StartCoroutine(TravelerAnimations());
         }
     }
-
     private IEnumerator TravelerAnimations()
     {
-        int visualNodeId;
-        while (pathToDestination.Count > 0)
+        int visualNodes;
+        while (travelToDestination.Count > 0)
         {
-            visualNodeId = pathToDestination.Pop().NodeID;
-            totalTravelCost += graph.GetTravelCost(currentDestination, graph.nodeList[visualNodeId - 1]);
-            Debug.Log(vertexPrefabs[visualNodeId - 1]);
-            traveler.transform.position = vertexPrefabs[visualNodeId - 1].transform.position;
-            currentDestination = graph.GetNode(graph.nodeList[visualNodeId - 1]);
+            visualNodes = travelToDestination.Pop().NodeID;
+            totalTravelCost += graph.ReturnTravelCost(currentDestination, graph.nodeList[visualNodes - 1]);
+            Debug.Log(verticesPrefab[visualNodes - 1]);
+            traveler.transform.position = verticesPrefab[visualNodes - 1].transform.position;
+            currentDestination = graph.ReturnNodes(graph.nodeList[visualNodes - 1]);
             yield return new WaitForSeconds(1f);
         }
         Debug.Log(totalTravelCost);
         travelCost.text = totalTravelCost.ToString();
     }
-
     private void CreatePath(VisualNode start, VisualNode destination)
     {
         foreach (var connections in graph.adjacencyList)
         {
             foreach (var edge in connections.Value)
             {
-                if (edge.Item1 == graph.GetNode(destination))
+                if (edge.Item1 == graph.ReturnNodes(destination))
                 {
                     if (connections.Key.NodeID == start.NodeID)
                     {
-                        Debug.Log("Processing1");
+                        Debug.Log("Doing1");
                         return;
                     }
                     else
                     {
-                        Debug.Log("Processing2");
-                        pathToDestination.Push(connections.Key);
+                        Debug.Log("Doing2");
+                        travelToDestination.Push(connections.Key);
                         CreatePath(start, connections.Key);
                         return;
                     }

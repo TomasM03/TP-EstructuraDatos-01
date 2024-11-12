@@ -1,9 +1,8 @@
 public class VisualNode
 {
     public int NodeID;
-
-    public VisualNode(int nodeID)
+    public VisualNode(int NodeID)
     {
-        this.NodeID = nodeID;
+        this.NodeID = NodeID;
     }
 }
