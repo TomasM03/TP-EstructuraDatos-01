@@ -7,10 +7,12 @@ public class ABB : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab; // Prefab para la línea
     public GameObject circlePrefab;
-    public Button inOrderButton; // Botón para In-Order
-    public Button preOrderButton; // Botón para Pre-Order
-    public Button postOrderButton; // Botón para Post-Order
-    public Button depthButton; // Botón para calcular la profundidad
+
+    [SerializeField] private Button inOrderButton; // Botón para In-Order
+    [SerializeField] private Button preOrderButton; // Botón para Pre-Order
+    [SerializeField] private Button postOrderButton; // Botón para Post-Order
+    [SerializeField] private Button depthButton; // Botón para calcular la profundidad
+
     public int[] myArray = { 20, 10, 1, 26, 35, 40, 18, 12, 15, 14, 30, 23 };
 
     private void Start()

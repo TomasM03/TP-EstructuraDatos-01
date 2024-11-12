@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI; // Importar para trabajar con UI
+using UnityEngine.UI;
 using UnityEngine;
 using System;
 using TMPro;
 
 public class AVL : ABB
 {
-    // Nueva raíz para AVL
     public Node avlRoot;
 
-    // Clase para representar un nodo (usada en AVL)
     public class Node
     {
         public int Key;
@@ -20,33 +18,23 @@ public class AVL : ABB
         public Node(int key)
         {
             Key = key;
-            Height = 1; // Inicializa la altura del nodo
+            Height = 1;
         }
     }
 
     private void Start()
     {
-        // Configurar los botones (heredado de ABB)
-        inOrderButton.onClick.AddListener(HandleInOrder);
-        preOrderButton.onClick.AddListener(HandlePreOrder);
-        postOrderButton.onClick.AddListener(HandlePostOrder);
-        depthButton.onClick.AddListener(HandleCalculateDepth);
-
-        // Inicializar el árbol AVL con los mismos elementos que ABB
         avlRoot = null;
         foreach (int key in myArray)
         {
             avlRoot = Insert(avlRoot, key);
         }
 
-        // Mostrar el árbol AVL visualmente
         ShowAVLTree(avlRoot, new Vector2(0, 3), 2.0f, 2.0f, 0);
     }
 
-    // Función para insertar un nuevo nodo en el AVL
     public Node Insert(Node node, int key)
     {
-        // Lógica de inserción ABB
         if (node == null)
             return new Node(key);
 
@@ -55,15 +43,12 @@ public class AVL : ABB
         else if (key > node.Key)
             node.Right = Insert(node.Right, key);
         else
-            return node; // Evitar llaves duplicadas
+            return node;
 
-        // Actualizar altura
         node.Height = 1 + Mathf.Max(GetHeight(node.Left), GetHeight(node.Right));
 
-        // Balancear el nodo
         int balance = GetBalance(node);
 
-        // Rotaciones
         if (balance > 1 && key < node.Left.Key)
             return RotateRight(node);
 
@@ -123,7 +108,6 @@ public class AVL : ABB
         return y;
     }
 
-    // Función para mostrar el árbol AVL visualmente (similar a ABB)
     void ShowAVLTree(Node node, Vector2 position, float verticalSpacing, float horizontalSpacing, int index)
     {
         if (node != null)
@@ -132,7 +116,6 @@ public class AVL : ABB
             TextMeshProUGUI circleText = newCircle.GetComponentInChildren<TextMeshProUGUI>();
             circleText.text = node.Key.ToString();
 
-            // Posiciones de los hijos
             Vector2 leftChildPosition = position + new Vector2(-horizontalSpacing / (index + 1), -verticalSpacing);
             Vector2 rightChildPosition = position + new Vector2(horizontalSpacing / (index + 1), -verticalSpacing);
 
