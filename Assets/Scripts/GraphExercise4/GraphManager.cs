@@ -15,12 +15,11 @@ public class GraphManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(traveler);
         graph = new Graph<VisualNode>();
 
         for (int i = 0; i < verticesPrefab.Length; i++)
         {
-            verticesPrefab[i].GetComponentInChildren<TextMeshProUGUI>().text = (i + 1).ToString();
+            verticesPrefab[i].GetComponentInChildren<TextMeshPro>().text = (i + 1).ToString();
             VisualNode visualNode = new VisualNode(i + 1);
             graph.AddNodes(visualNode);
         }
@@ -62,7 +61,7 @@ public class GraphManager : MonoBehaviour
     private void TravelToDestination(RaycastHit2D ray)
     {
         GameObject node = ray.collider.gameObject;
-        int nodeIndex = int.Parse(node.GetComponentInChildren<TextMeshProUGUI>().text);
+        int nodeIndex = int.Parse(node.GetComponentInChildren<TextMeshPro>().text);
         VisualNode visualNode = new VisualNode(nodeIndex);
         visualNode = graph.ReturnNodes(visualNode);
         totalTravelCost = 0;
@@ -80,7 +79,7 @@ public class GraphManager : MonoBehaviour
         {
             visualNodes = travelToDestination.Pop().NodeID;
             totalTravelCost += graph.ReturnTravelCost(currentDestination, graph.nodeList[visualNodes - 1]);
-            Debug.Log(verticesPrefab[visualNodes - 1]);
+         //   Debug.Log(verticesPrefab[visualNodes - 1]);
             traveler.transform.position = verticesPrefab[visualNodes - 1].transform.position;
             currentDestination = graph.ReturnNodes(graph.nodeList[visualNodes - 1]);
             yield return new WaitForSeconds(1f);
@@ -98,12 +97,10 @@ public class GraphManager : MonoBehaviour
                 {
                     if (connections.Key.NodeID == start.NodeID)
                     {
-                        Debug.Log("Doing1");
                         return;
                     }
                     else
                     {
-                        Debug.Log("Doing2");
                         travelToDestination.Push(connections.Key);
                         CreatePath(start, connections.Key);
                         return;
