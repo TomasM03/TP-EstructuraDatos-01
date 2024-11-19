@@ -39,6 +39,6 @@ public class SceneMovement : MonoBehaviour
     }
     private void Excersise5()
     {
-        SceneManager.LoadScene("5.ABB");
+        SceneManager.LoadScene("5.Laberinto");
     }
 }
