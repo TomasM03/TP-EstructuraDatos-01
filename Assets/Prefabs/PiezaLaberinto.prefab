@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3311530273815884542}
   - component: {fileID: 1974246547623886826}
-  - component: {fileID: 2923771233885605836}
   - component: {fileID: 1594205382393711090}
+  - component: {fileID: -2980999039653589494}
   m_Layer: 0
   m_Name: PiezaLaberinto
   m_TagString: Untagged
@@ -87,18 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2923771233885605836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2658179823779977007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49e625c2bc3053147932f171a09a9aa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1594205382393711090
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,6 +132,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-2980999039653589494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2658179823779977007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b069692271d1a054fb705fd1a626518a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6957529886558567164
 GameObject:
   m_ObjectHideFlags: 0
