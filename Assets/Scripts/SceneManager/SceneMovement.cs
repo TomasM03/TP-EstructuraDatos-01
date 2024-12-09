@@ -6,39 +6,52 @@ using UnityEngine.UI;
 
 public class SceneMovement : MonoBehaviour
 {
-    [SerializeField] private Button excercise1;
-    [SerializeField] private Button excercise2;
-    [SerializeField] private Button excercise3;
-    [SerializeField] private Button excercise4;
-    [SerializeField] private Button excercise5;
-
-    private void Start()
+    public void EX11()
     {
-        excercise1.onClick.AddListener(Excersise1);
-        excercise2.onClick.AddListener(Excersise2);
-        excercise3.onClick.AddListener(Excersise3);
-        excercise4.onClick.AddListener(Excersise4);
-        excercise5.onClick.AddListener(Excersise5);
+        SceneManager.LoadScene("1.1 Objetivos");
     }
-
-    private void Excersise1()
+    public void EX12()
     {
-        SceneManager.LoadScene("1.ABB");
+        SceneManager.LoadScene("1.2 Anotador");
     }
-    private void Excersise2()
+    public void EX13()
     {
-        SceneManager.LoadScene("2.AVL");
+        SceneManager.LoadScene("1.3 Puzzle");
     }
-    private void Excersise3()
+    public void EX14()
     {
-        SceneManager.LoadScene("3. Conjunto TDA");
+        SceneManager.LoadScene("1.4 High Score");
     }
-    private void Excersise4()
+    public void EX15()
     {
-        SceneManager.LoadScene("4. Graph");
+        SceneManager.LoadScene("1.5 Inventario");
     }
-    private void Excersise5()
+    public void EX16()
     {
-        SceneManager.LoadScene("5.Laberinto");
+        SceneManager.LoadScene("1.6 Tienda");
+    }
+    public void EX21()
+    {
+        SceneManager.LoadScene("2.1 ABB");
+    }
+    public void EX22()
+    {
+        SceneManager.LoadScene("2.2 AVL");
+    }
+    public void EX23()
+    {
+        SceneManager.LoadScene("2.3 Conjunto TDA");
+    }
+    public void EX24()
+    {
+        SceneManager.LoadScene("2.4 Graph");
+    }
+    public void EX25()
+    {
+        SceneManager.LoadScene("2.5 Laberinto");
+    }
+    public void INT()
+    {
+        SceneManager.LoadScene("Integrador");
     }
 }

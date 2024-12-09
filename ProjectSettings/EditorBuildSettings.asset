@@ -9,15 +9,39 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: f5749f9ce95fd4043bf355f6dff0160d
   - enabled: 1
-    path: Assets/Scenes/1.ABB.unity
+    path: Assets/Scenes/1.1 Objetivos.unity
+    guid: 944d7024c04ea0d4684b962007745120
+  - enabled: 1
+    path: Assets/Scenes/1.2 Anotador.unity
+    guid: c67e02be51f3b8447bc789a914429e33
+  - enabled: 1
+    path: Assets/Scenes/1.3 Puzzle.unity
+    guid: 57c071a34a3dc9240a80224f21c425ce
+  - enabled: 1
+    path: Assets/Scenes/1.4 High Score.unity
+    guid: b7003721fff059a44a8701e918291b5a
+  - enabled: 1
+    path: Assets/Scenes/1.5 Inventario.unity
+    guid: f526f015ebf553c4a87d99d36f88a454
+  - enabled: 1
+    path: Assets/Scenes/1.6 Tienda.unity
+    guid: c2cf99e51537375488d199125cc28ba7
+  - enabled: 1
+    path: Assets/Scenes/2.1 ABB.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/2.AVL.unity
+    path: Assets/Scenes/2.2 AVL.unity
     guid: 2e0c191393ac6ab4f9d5e1e670211c89
   - enabled: 1
-    path: Assets/Scenes/3. Conjunto TDA.unity
+    path: Assets/Scenes/2.3 Conjunto TDA.unity
     guid: cbcee17789e4f28428ecb82abd6993cd
   - enabled: 1
-    path: Assets/Scenes/4. Graph.unity
+    path: Assets/Scenes/2.4 Graph.unity
     guid: 61354641ecd496947bfd291d86622918
+  - enabled: 1
+    path: Assets/Scenes/2.5 Laberinto.unity
+    guid: ac7c2c6256a6451469ddbdd530c29727
+  - enabled: 1
+    path: Assets/Scenes/Integrador.unity
+    guid: 4e798458c1cb60a448b4bb5a2a816652
   m_configObjects: {}
