@@ -8,11 +8,13 @@ public class SceneMovEX : MonoBehaviour
 {
     [SerializeField] private Button previous;
     [SerializeField] private Button next;
+    [SerializeField] private Button mainMenu;
 
     private void Start()
     {
         previous.onClick.AddListener(Previous);
         next.onClick.AddListener(Next);
+        mainMenu.onClick.AddListener(MainMenu);
     }
 
     private void Next()
@@ -33,5 +35,9 @@ public class SceneMovEX : MonoBehaviour
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         int previousScene = currentScene - 1;
         SceneManager.LoadScene(previousScene);
+    }
+    private void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
