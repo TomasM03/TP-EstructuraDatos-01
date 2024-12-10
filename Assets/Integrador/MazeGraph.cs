@@ -52,7 +52,7 @@ public class MazeGraph : MonoBehaviour
 
     private void CreateGrid()
     {
-        grid = new MazeNode[rows, cols]; // Asegúrate de que 'rows' y 'cols' están configurados correctamente en el Inspector.
+        grid = new MazeNode[rows, cols];
         float offset = 1.1f; // Distancia entre los nodos.
 
         for (int row = 0; row < rows; row++)
