@@ -17,7 +17,7 @@ public class SceneMovEX : MonoBehaviour
         mainMenu.onClick.AddListener(MainMenu);
     }
 
-    private void Next()
+    public void Next()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         int nextScene = currentScene + 1;
@@ -30,13 +30,13 @@ public class SceneMovEX : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         }
     }
-    private void Previous()
+    public void Previous()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         int previousScene = currentScene - 1;
         SceneManager.LoadScene(previousScene);
     }
-    private void MainMenu()
+    public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }

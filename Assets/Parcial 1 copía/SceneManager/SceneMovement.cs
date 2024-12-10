@@ -12,11 +12,11 @@ public class SceneMovement : MonoBehaviour
     }
     public void EX12()
     {
-        SceneManager.LoadScene("1.2 Anotador");
+        SceneManager.LoadScene("1.3 Anotador");
     }
     public void EX13()
     {
-        SceneManager.LoadScene("1.3 Puzzle");
+        SceneManager.LoadScene("1.2 Puzzle");
     }
     public void EX14()
     {
